@@ -1,31 +1,33 @@
-// Flattening enums directly into variables
-
-// Action constants
-const StartQuantization = 0;
-const UpdateProgress = 1;
-const UpdateQuantizedImage = 2;
-const UpdatePalettes = 3;
-const DoneQuantization = 4;
-
-// ColorZeroBehaviour constants
-const Unique = 0;
-const Shared = 1;
-const TransparentFromTransparent = 2;
-const TransparentFromColor = 3;
-
-// Dither constants
-const Off = 0;
-const Fast = 1;
-const Slow = 2;
-
-// DitherPattern constants
-const Diagonal4 = 0;
-const Horizontal4 = 1;
-const Vertical4 = 2;
-const Diagonal2 = 3;
-const Horizontal2 = 4;
-const Vertical2 = 5;
-
+var Action;
+(function (Action) {
+    Action[Action["StartQuantization"] = 0] = "StartQuantization";
+    Action[Action["UpdateProgress"] = 1] = "UpdateProgress";
+    Action[Action["UpdateQuantizedImage"] = 2] = "UpdateQuantizedImage";
+    Action[Action["UpdatePalettes"] = 3] = "UpdatePalettes";
+    Action[Action["DoneQuantization"] = 4] = "DoneQuantization";
+})(Action || (Action = {}));
+var ColorZeroBehaviour;
+(function (ColorZeroBehaviour) {
+    ColorZeroBehaviour[ColorZeroBehaviour["Unique"] = 0] = "Unique";
+    ColorZeroBehaviour[ColorZeroBehaviour["Shared"] = 1] = "Shared";
+    ColorZeroBehaviour[ColorZeroBehaviour["TransparentFromTransparent"] = 2] = "TransparentFromTransparent";
+    ColorZeroBehaviour[ColorZeroBehaviour["TransparentFromColor"] = 3] = "TransparentFromColor";
+})(ColorZeroBehaviour || (ColorZeroBehaviour = {}));
+var Dither;
+(function (Dither) {
+    Dither[Dither["Off"] = 0] = "Off";
+    Dither[Dither["Fast"] = 1] = "Fast";
+    Dither[Dither["Slow"] = 2] = "Slow";
+})(Dither || (Dither = {}));
+var DitherPattern;
+(function (DitherPattern) {
+    DitherPattern[DitherPattern["Diagonal4"] = 0] = "Diagonal4";
+    DitherPattern[DitherPattern["Horizontal4"] = 1] = "Horizontal4";
+    DitherPattern[DitherPattern["Vertical4"] = 2] = "Vertical4";
+    DitherPattern[DitherPattern["Diagonal2"] = 3] = "Diagonal2";
+    DitherPattern[DitherPattern["Horizontal2"] = 4] = "Horizontal2";
+    DitherPattern[DitherPattern["Vertical2"] = 5] = "Vertical2";
+})(DitherPattern || (DitherPattern = {}));
 
 
 const body = document.getElementById("body");
