@@ -182,6 +182,7 @@ quantizeButton.addEventListener("click", () => {
         div.appendChild(quantizedImageDownload);
         div.appendChild(palettesImageDownload);
         quantizedImages.prepend(div);
+        quantizedImages.prepend(document.createElement("hr"));
     }
     integerInputs.forEach(validateIntegerInput);
     validateFloatInput([fractionOfPixelsInput, 0.1]);

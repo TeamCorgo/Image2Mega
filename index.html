@@ -143,10 +143,6 @@
     <header>Mega Image → Pallete</h1></header>
   <div class="content-wrapper">
     <div class="container1">
-      <div id="title">
-        <h2>Input</h2>
-        <hr>
-      </div>
       <img id="source_img" src="nebula.png" alt="source image">
 
       <div class="form-container">
@@ -215,17 +211,16 @@
         <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
         <label for="dither_vertical2">vertical2</label>
       </fieldset>
-
-      <div>
-        <button type="button" id="quantizeButton">Quantize</button>
-        <progress id="progress" max="100" value="0"></progress>
-      </div>
     </div>
 
     <div class="container2">
       <div id="title">
         <h2>Output</h2>
         <hr>      
+      </div>
+      <div>
+        <button type="button" id="quantizeButton">Quantize</button>
+        <progress id="progress" max="100" value="0"></progress>
       </div>
       <div id="quantized_images"><!-- Quantized images will go here --></div>
     </div>
