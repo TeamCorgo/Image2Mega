@@ -96,7 +96,7 @@ function updateQuantizedImage(image) {
 function updatePalettes(palettes, doSorting) {
     let pal = structuredClone(palettes);
     const colorZeroBehaviour = quantizationOptions.colorZeroBehaviour;
-    let startIndex = 1;
+    let startIndex = 0;
     if (colorZeroBehaviour === ColorZeroBehaviour.TransparentFromColor ||
         colorZeroBehaviour === ColorZeroBehaviour.TransparentFromTransparent) {
         startIndex = 1;
@@ -106,9 +106,6 @@ function updatePalettes(palettes, doSorting) {
     }
     if (colorZeroBehaviour === ColorZeroBehaviour.Shared) {
         startIndex = 1;
-    }
-    if (doSorting) {
-        pal = sortPalettes(pal, startIndex);
     }
     postMessage({
         action: Action.UpdatePalettes,
