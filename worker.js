@@ -107,6 +107,9 @@ function updatePalettes(palettes, doSorting) {
     if (colorZeroBehaviour === ColorZeroBehaviour.Shared) {
         startIndex = 1;
     }
+    if (doSorting) {
+        pal = sortPalettes(pal, startIndex);
+    }
     postMessage({
         action: Action.UpdatePalettes,
         palettes: pal,
@@ -1049,6 +1052,8 @@ function colorQuantize1Color(tiles, pixels, randomShuffle) {
         palettes[0].push(avgColor);
         palettes[0][0] = structuredClone(quantizationOptions.colorZeroValue);
     }
+    palettes[0] = [0, 255, 0];
+
     let splitIndex = 0;
     for (let numPalettes = 2; numPalettes <= quantizationOptions.numPalettes; numPalettes++) {
         palettes.push(structuredClone(palettes[splitIndex]));
