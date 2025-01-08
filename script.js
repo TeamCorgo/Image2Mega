@@ -185,6 +185,7 @@ quantizeButton.addEventListener("click", () => {
     worker = new Worker("./worker.js");
     worker.onmessage = function (event) {
         const data = event.data;
+        console.log(data);
         if (data.action === Action.UpdateProgress) {
             progress.value = data.progress;
         }

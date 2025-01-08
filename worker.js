@@ -105,7 +105,7 @@ function updatePalettes(palettes, doSorting) {
         }
     }
     if (colorZeroBehaviour === ColorZeroBehaviour.Shared) {
-        startIndex = 2;
+        startIndex = 1;
     }
     if (doSorting) {
         pal = sortPalettes(pal, startIndex);
