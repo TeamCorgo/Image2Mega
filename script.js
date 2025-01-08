@@ -1,11 +1,15 @@
 import { Action, ColorZeroBehaviour, Dither, DitherPattern } from "./enums.js";
 const body = document.getElementById("body");
 const imageSelector = document.getElementById("image_selector");
+const tileWidthInput = document.getElementById("tile_width");
+const tileHeightInput = document.getElementById("tile_height");
 const numPalettesInput = document.getElementById("palette_num");
 const colorsPerPaletteInput = document.getElementById("colors_per_palette");
 const bitsPerChannelInput = document.getElementById("bits_per_channel");
 const fractionOfPixelsInput = document.getElementById("fraction_of_pixels");
 const integerInputs = [
+    [tileWidthInput, 8],
+    [tileHeightInput, 8],
     [numPalettesInput, 8],
     [colorsPerPaletteInput, 4],
     [bitsPerChannelInput, 5],
@@ -163,7 +167,7 @@ quantizeButton.addEventListener("click", () => {
     const ditherMethod = selectedValue(ditherButtons, ditherValues);
     const ditherPattern = selectedValue(ditherPatternButtons, ditherPatternValues);
     const colorZeroAbbreviation = selectedValue(indexZeroButtons, colorZeroAbbreviations);
-    const settingsStr = `-8x8-${numPalettesInput.value}p${colorsPerPaletteInput.value}c-${colorZeroAbbreviation}`;
+    const settingsStr = `-${tileWidthInput.value}x${tileHeightInput.value}-${numPalettesInput.value}p${colorsPerPaletteInput.value}c-${colorZeroAbbreviation}`;
     const totalPaletteColors = parseInt(numPalettesInput.value, radix) *
         parseInt(colorsPerPaletteInput.value, radix);
     if (totalPaletteColors > 256) {
@@ -227,6 +231,8 @@ quantizeButton.addEventListener("click", () => {
         action: Action.StartQuantization,
         imageData: imageDataFrom(sourceImage),
         quantizationOptions: {
+            tileWidth: parseInt(tileWidthInput.value, radix),
+            tileHeight: parseInt(tileHeightInput.value, radix),
             numPalettes: parseInt(numPalettesInput.value, radix),
             colorsPerPalette: parseInt(colorsPerPaletteInput.value, radix),
             bitsPerChannel: parseInt(bitsPerChannelInput.value, radix),
