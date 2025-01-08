@@ -42,17 +42,11 @@
     input[type="color"],
     button {
       width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
     }
 
     button {
       background-color: #3498db;
       color: white;
-      border: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -62,7 +56,6 @@
     }
 
     fieldset {
-      border: 1px solid #ddd;
       padding: 1rem;
       border-radius: 8px;
       margin-bottom: 1.5rem;
@@ -213,6 +206,7 @@
 
         <div>
           <button type="button" id="quantizeButton">Quantize</button>
+          <progress id="progress" max="100" value="0"></progress>
         </div>
       </fieldset>
     </div>
@@ -221,9 +215,6 @@
       <div id="title">
         <h2>Output</h2>
         <hr>      
-      </div>
-      <div>
-        <progress id="progress" max="100" value="0"></progress>
       </div>
       <div id="quantized_images"><!-- Quantized images will go here --></div>
     </div>
