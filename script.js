@@ -1,25 +1,31 @@
-// Flattening enums into variables
-const StartQuantization = Action.StartQuantization;
-const UpdateProgress = Action.UpdateProgress;
-const UpdateQuantizedImage = Action.UpdateQuantizedImage;
-const UpdatePalettes = Action.UpdatePalettes;
-const DoneQuantization = Action.DoneQuantization;
+// Flattening enums directly into variables
 
-const Unique = ColorZeroBehaviour.Unique;
-const Shared = ColorZeroBehaviour.Shared;
-const TransparentFromTransparent = ColorZeroBehaviour.TransparentFromTransparent;
-const TransparentFromColor = ColorZeroBehaviour.TransparentFromColor;
+// Action constants
+const StartQuantization = 0;
+const UpdateProgress = 1;
+const UpdateQuantizedImage = 2;
+const UpdatePalettes = 3;
+const DoneQuantization = 4;
 
-const Off = Dither.Off;
-const Fast = Dither.Fast;
-const Slow = Dither.Slow;
+// ColorZeroBehaviour constants
+const Unique = 0;
+const Shared = 1;
+const TransparentFromTransparent = 2;
+const TransparentFromColor = 3;
 
-const Diagonal4 = DitherPattern.Diagonal4;
-const Horizontal4 = DitherPattern.Horizontal4;
-const Vertical4 = DitherPattern.Vertical4;
-const Diagonal2 = DitherPattern.Diagonal2;
-const Horizontal2 = DitherPattern.Horizontal2;
-const Vertical2 = DitherPattern.Vertical2;
+// Dither constants
+const Off = 0;
+const Fast = 1;
+const Slow = 2;
+
+// DitherPattern constants
+const Diagonal4 = 0;
+const Horizontal4 = 1;
+const Vertical4 = 2;
+const Diagonal2 = 3;
+const Horizontal2 = 4;
+const Vertical2 = 5;
+
 
 
 const body = document.getElementById("body");
