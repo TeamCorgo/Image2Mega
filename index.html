@@ -117,7 +117,7 @@
       padding: 2rem; /* Adds space inside the container */
     }
 
-    .container2 {
+    .container2 .title{
       align-items: center; /* Center items vertically */
       justify-items: center; /* Center items horizontally */
       text-align: center; /* Center text inside elements if any */
@@ -129,6 +129,23 @@
       grid-template-columns: 1fr; /* Single-column layout within */
       gap: 1rem;
     }
+
+    .form-container {
+      display: grid;
+      grid-template-columns: max-content auto;
+      gap: 0.5rem 1rem; /* Space between labels and inputs */
+      align-items: center;
+    }
+
+    .form-container label {
+      text-align: right; /* Align labels to the right */
+      font-weight: bold;
+    }
+
+    .form-container input {
+      padding: 0.3rem;
+      font-size: 1rem;
+    }
   </style>
 </head>
 
@@ -138,26 +155,26 @@
   </header>
 <div class="content-wrapper">
   <div class="container1">
-    <h2>Input</h2>
+    <div id="title">
+      <h2>Input</h2>
+      <hr>
+    </div>
     <img id="source_img" src="carina-nebula.png" alt="source image">
-    <table>
-      <tr>
-        <td><label for="image_selector">Input image:</label></td>
-        <td><input type="file" id="image_selector" accept="image/*"></td>
-      </tr>
-      <tr>
-        <td><label for="palette_num">Palettes:</label></td>
-        <td><input type="number" id="palette_num" min="1" max="3" step="1" value="4"></td>
-      </tr>
-      <tr>
-        <td><label for="colors_per_palette">Colors per palette:</label></td>
-        <td><input type="number" id="colors_per_palette" min="2" max="16" step="1" value="16"></td>
-      </tr>
-      <tr>
-        <td><label for="fraction_of_pixels">Fraction of pixels:</label></td>
-        <td><input type="number" id="fraction_of_pixels" min="0.01" max="10" step="any" value="0.1"></td>
-      </tr>
-    </table>
+
+    <div class="form-container">
+      <label for="image_selector">Input image:</label>
+      <input type="file" id="image_selector" accept="image/*">
+    
+      <label for="palette_num">Palettes:</label>
+      <input type="number" id="palette_num" min="1" max="3" step="1" value="4">
+    
+      <label for="colors_per_palette">Colors per palette:</label>
+      <input type="number" id="colors_per_palette" min="2" max="16" step="1" value="16">
+    
+      <label for="fraction_of_pixels">Fraction of pixels:</label>
+      <input type="number" id="fraction_of_pixels" min="0.01" max="10" step="any" value="0.1">
+    </div>
+
     <fieldset>
       <legend>Color index zero behaviour</legend>
       <table>
@@ -258,7 +275,10 @@
   </div>
 
   <div class="container2">
-    <h2>Output</h2>
+    <div id="title">
+      <h2>Output</h2>
+      <hr>      
+    </div>
     <div id="quantized_images"><!-- Quantized images will go here --></div>
   </div>
 </div>
