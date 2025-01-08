@@ -5,11 +5,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
   <title>Sega Genesis Palette Quantization</title>
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
       background-color: #f4f4f9;
       color: #333;
       margin: 0;
@@ -114,15 +112,18 @@
       margin-top: 1rem;
     }
 
-    @media (max-width: 600px) {
-      fieldset {
-        padding: 1rem 0.5rem;
-      }
+    input[type="color"] {
+      width: 5em;
+      height: 5em;
     }
   </style>
 </head>
 
 <body id="body">
+  <header>
+    <h1>Sega Genesis Palette Quantization</h1>
+  </header>
+
   <div class="container">
     <img id="source_img" src="carina-nebula.png" alt="source image">
     <table>
