@@ -1,4 +1,27 @@
-import { Action, ColorZeroBehaviour, Dither, DitherPattern } from "./enums.js";
+// Flattening enums into variables
+const StartQuantization = Action.StartQuantization;
+const UpdateProgress = Action.UpdateProgress;
+const UpdateQuantizedImage = Action.UpdateQuantizedImage;
+const UpdatePalettes = Action.UpdatePalettes;
+const DoneQuantization = Action.DoneQuantization;
+
+const Unique = ColorZeroBehaviour.Unique;
+const Shared = ColorZeroBehaviour.Shared;
+const TransparentFromTransparent = ColorZeroBehaviour.TransparentFromTransparent;
+const TransparentFromColor = ColorZeroBehaviour.TransparentFromColor;
+
+const Off = Dither.Off;
+const Fast = Dither.Fast;
+const Slow = Dither.Slow;
+
+const Diagonal4 = DitherPattern.Diagonal4;
+const Horizontal4 = DitherPattern.Horizontal4;
+const Vertical4 = DitherPattern.Vertical4;
+const Diagonal2 = DitherPattern.Diagonal2;
+const Horizontal2 = DitherPattern.Horizontal2;
+const Vertical2 = DitherPattern.Vertical2;
+
+
 const body = document.getElementById("body");
 const imageSelector = document.getElementById("image_selector");
 const numPalettesInput = document.getElementById("palette_num");
