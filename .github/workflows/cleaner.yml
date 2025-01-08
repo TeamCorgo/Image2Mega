@@ -4,8 +4,7 @@ on:
   workflow_dispatch:  # Allows manual trigger of the workflow
   push:
     branches:
-      - 'master'  # Trigger on push to the 'master' branch
-      - 'latest'  # Trigger on push to the 'latest' branch
+      - 'main'
   schedule:
     - cron: '0 0 * * *'  # Runs daily at midnight UTC
 
