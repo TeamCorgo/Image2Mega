@@ -5,9 +5,129 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  <link rel="stylesheet" href="style.css">
-  <title>Tiled Palette Quantization</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <title>Sega Genesis Palette Quantization</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #34495e;
+      color: #ecf0f1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-spacing: 0 1rem;
+    }
+
+    table td {
+      padding: 0.5rem;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input[type="file"],
+    input[type="number"],
+    input[type="color"],
+    button {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    legend {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+
+    #quantized_images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    progress {
+      width: 100%;
+      height: 1rem;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #34495e;
+      color: #ecf0f1;
+    }
+
+    @media (max-width: 600px) {
+      fieldset {
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body id="body">
@@ -41,9 +161,9 @@
       </tr>
       <tr>
         <td>
-          <input type="radio" id="shared" name="color_zero" value="shared">
+          <input type="radio" id="shared" name="color_zero" value="shared" checked>
           <label for="shared">shared color:</label>
-          <input type="color" id="shared_color" value="#000000" aria-label="shared color" checked>
+          <input type="color" id="shared_color" value="#000000" aria-label="shared color">
         </td>
       </tr>
       <tr>
