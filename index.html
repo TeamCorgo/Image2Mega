@@ -148,27 +148,28 @@
       </fieldset>
 
       <fieldset>
+        <legend>Color index zero behaviour</legend>
+        <div class="radio-group">
+          <label for="unique">unique <input type="radio" id="unique" name="color_zero" value="unique"></label>
+        </div>
+      </fieldset>
+
+
+
+      <fieldset>
         <legend>Dithering</legend>
         <div class="radio-group">
-
           <label for="dither_off">
-            Disabled
-            <input type="radio" id="dither_off" name="dither" value="dither_off" checked>
+            Disabled <input type="radio" id="dither_off" name="dither" value="dither_off" checked>
           </label>
-
           <label for="dither_fast">
-            Fast
-            <input type="radio" id="dither_fast" name="dither" value="dither_fast">
+            Fast <input type="radio" id="dither_fast" name="dither" value="dither_fast">
           </label>
-
           <label for="dither_slow">
-            Slow
-            <input type="radio" id="dither_slow" name="dither" value="dither_slow">
+            Slow <input type="radio" id="dither_slow" name="dither" value="dither_slow">
           </label>
-
           <label for="dither_weight">
-            Weight
-            <input type="number" id="dither_weight" min="0.01" max="1" step="any" value="0.5">
+            Weight <input type="number" id="dither_weight" min="0.01" max="1" step="any" value="0.5">
           </label>
         </div>
       </fieldset>
@@ -177,28 +178,22 @@
         <legend>Dither pattern</legend>
         <div class="radio-group">
           <label for="dither_diagonal4">
-            <input type="radio" id="dither_diagonal4" name="dither_pattern" value="dither_diagonal4" checked>
-            Diag 4
+            Diag 4 <input type="radio" id="dither_diagonal4" name="dither_pattern" value="dither_diagonal4" checked>
           </label>
           <label for="dither_diagonal2">
-            <input type="radio" id="dither_diagonal2" name="dither_pattern" value="dither_diagonal2">
-            Diag 2
+            Diag 2 <input type="radio" id="dither_diagonal2" name="dither_pattern" value="dither_diagonal2">
           </label>
           <label for="dither_horizontal4">
-            <input type="radio" id="dither_horizontal4" name="dither_pattern" value="dither_horizontal4">
-            Horiz 4
+            Horiz 4 <input type="radio" id="dither_horizontal4" name="dither_pattern" value="dither_horizontal4">
           </label>
           <label for="dither_horizontal2">
-            <input type="radio" id="dither_horizontal2" name="dither_pattern" value="dither_horizontal2">
-            Horiz 2
+            Horiz 2 <input type="radio" id="dither_horizontal2" name="dither_pattern" value="dither_horizontal2">
           </label>
           <label for="dither_vertical4">
-            <input type="radio" id="dither_vertical4" name="dither_pattern" value="dither_vertical4">
-            Vert 4
+            Vert 4 <input type="radio" id="dither_vertical4" name="dither_pattern" value="dither_vertical4">
           </label>
           <label for="dither_vertical2">
-            <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
-            Vert 2
+            Vert 2 <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
           </label>
         </div>
       </fieldset>      
