@@ -1,8 +1,6 @@
 import { Action, ColorZeroBehaviour, Dither, DitherPattern } from "./enums.js";
 const body = document.getElementById("body");
 const imageSelector = document.getElementById("image_selector");
-const tileWidthInput = document.getElementById("tile_width");
-const tileHeightInput = document.getElementById("tile_height");
 const numPalettesInput = document.getElementById("palette_num");
 const colorsPerPaletteInput = document.getElementById("colors_per_palette");
 const bitsPerChannelInput = document.getElementById("bits_per_channel");
@@ -165,7 +163,7 @@ quantizeButton.addEventListener("click", () => {
     const ditherMethod = selectedValue(ditherButtons, ditherValues);
     const ditherPattern = selectedValue(ditherPatternButtons, ditherPatternValues);
     const colorZeroAbbreviation = selectedValue(indexZeroButtons, colorZeroAbbreviations);
-    const settingsStr = `-${tileWidthInput.value}x${tileHeightInput.value}-${numPalettesInput.value}p${colorsPerPaletteInput.value}c-${colorZeroAbbreviation}`;
+    const settingsStr = `-${8}x${8}-${numPalettesInput.value}p${colorsPerPaletteInput.value}c-${colorZeroAbbreviation}`;
     const totalPaletteColors = parseInt(numPalettesInput.value, radix) *
         parseInt(colorsPerPaletteInput.value, radix);
     if (totalPaletteColors > 256) {
