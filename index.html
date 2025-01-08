@@ -27,15 +27,6 @@
       font-weight: 700;
     }
 
-    .container1 .container2{
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
     img {
       max-width: 100%;
       display: block;
@@ -98,12 +89,6 @@
       margin-right: 0.5rem;
     }
 
-    #quantized_images {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
     progress {
       width: 100%;
       height: 1rem;
@@ -117,15 +102,41 @@
       height: 5em;
     }
 
-  .content-wrapper {
-    display: flex;
-    gap: 2rem; /* Space between container and quantized images */
-    max-width: 1200px; /* Adjust to fit your layout */
-    margin: 2rem auto;
-  }
+    .container1 {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .container2 {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .content-wrapper {
+      display: flex;
+      gap: 2rem; /* Space between container and quantized images */
+      max-width: 1200px; /* Adjust to fit your layout */
+      margin: 2rem auto;
+    }
 
+    container1 {
+     flex: 2; /* Takes more space than quantized_images */
+    }
+
+    #quantized_images {
+      flex: 1; /* Takes less space than container */
+      display: grid;
+      grid-template-columns: 1fr; /* Single-column layout within */
+      gap: 1rem;
+    }
   </style>
 </head>
 
