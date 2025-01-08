@@ -102,29 +102,20 @@
       height: 5em;
     }
 
-    .container1 {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .container2 {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
     .content-wrapper {
       display: flex;
-      gap: 2rem; /* Space between container and quantized images */
-      max-width: 1200px; /* Adjust to fit your layout */
+      gap: 2rem; /* Adds space between container1 and container2 */
+      max-width: 1200px;
       margin: 2rem auto;
+      padding: 0 1rem; /* Optional: Add padding to prevent content from touching screen edges */
+    }
+
+    .container1, .container2 {
+      flex: 1; /* Ensure both containers take up equal space */
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 2rem; /* Adds space inside the container */
     }
 
     container1 {
