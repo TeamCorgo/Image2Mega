@@ -99,7 +99,7 @@ function updatePalettes(palettes, doSorting) {
     let startIndex = 0;
     if (colorZeroBehaviour === ColorZeroBehaviour.TransparentFromColor ||
         colorZeroBehaviour === ColorZeroBehaviour.TransparentFromTransparent) {
-        startIndex = 1;
+        startIndex = 2;
         for (const palette of pal) {
             palette.unshift(cloneColor(quantizationOptions.colorZeroValue));
         }
