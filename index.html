@@ -94,6 +94,18 @@
       padding: 0.3rem;
       font-size: 1rem;
     }
+
+    .radio-group {
+      display: flex;
+      gap: 10px; /* Adjust the gap between the radio buttons */
+      flex-wrap: wrap; /* Allows wrapping if the screen is too small */
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+    }
+
   </style>
 
 
@@ -152,24 +164,33 @@
 
       <fieldset>
         <legend>Dither pattern</legend>
-        <input type="radio" id="dither_diagonal4" name="dither_pattern" value="dither_diagonal4" checked>
-        <label for="dither_diagonal4">diagonal4</label>
-        <hr>
-        <input type="radio" id="dither_diagonal2" name="dither_pattern" value="dither_diagonal2">
-        <label for="dither_diagonal2">diagonal2</label>
-        <hr>
-        <input type="radio" id="dither_horizontal4" name="dither_pattern" value="dither_horizontal4">
-        <label for="dither_horizontal4">horizontal4</label>
-        <hr>
-        <input type="radio" id="dither_horizontal2" name="dither_pattern" value="dither_horizontal2">
-        <label for="dither_horizontal2">horizontal2</label>
-        <hr>
-        <input type="radio" id="dither_vertical4" name="dither_pattern" value="dither_vertical4">
-        <label for="dither_vertical4">vertical4</label>
-        <hr>
-        <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
-        <label for="dither_vertical2">vertical2</label>
-      </fieldset>
+        <div class="radio-group">
+          <label for="dither_diagonal4">
+            <input type="radio" id="dither_diagonal4" name="dither_pattern" value="dither_diagonal4" checked>
+            diagonal4
+          </label>
+          <label for="dither_diagonal2">
+            <input type="radio" id="dither_diagonal2" name="dither_pattern" value="dither_diagonal2">
+            diagonal2
+          </label>
+          <label for="dither_horizontal4">
+            <input type="radio" id="dither_horizontal4" name="dither_pattern" value="dither_horizontal4">
+            horizontal4
+          </label>
+          <label for="dither_horizontal2">
+            <input type="radio" id="dither_horizontal2" name="dither_pattern" value="dither_horizontal2">
+            horizontal2
+          </label>
+          <label for="dither_vertical4">
+            <input type="radio" id="dither_vertical4" name="dither_pattern" value="dither_vertical4">
+            vertical4
+          </label>
+          <label for="dither_vertical2">
+            <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
+            vertical2
+          </label>
+        </div>
+      </fieldset>      
 
       <div>
         <button type="button" id="quantizeButton" style="background-color: #2980b9;">Quantize</button>
