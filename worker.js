@@ -96,10 +96,10 @@ function updateQuantizedImage(image) {
 function updatePalettes(palettes, doSorting) {
     let pal = structuredClone(palettes);
     const colorZeroBehaviour = quantizationOptions.colorZeroBehaviour;
-    let startIndex = 0;
+    let startIndex = 1;
     if (colorZeroBehaviour === ColorZeroBehaviour.TransparentFromColor ||
         colorZeroBehaviour === ColorZeroBehaviour.TransparentFromTransparent) {
-        startIndex = 2;
+        startIndex = 1;
         for (const palette of pal) {
             palette.unshift(cloneColor(quantizationOptions.colorZeroValue));
         }
