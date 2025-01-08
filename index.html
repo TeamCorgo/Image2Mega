@@ -27,7 +27,7 @@
       font-weight: 700;
     }
 
-    .container {
+    .container1 .container2{
       max-width: 800px;
       margin: 2rem auto;
       padding: 2rem;
@@ -124,16 +124,7 @@
     margin: 2rem auto;
   }
 
-  .container {
-    flex: 2; /* Takes more space than quantized_images */
-  }
 
-  #quantized_images {
-    flex: 1; /* Takes less space than container */
-    display: grid;
-    grid-template-columns: 1fr; /* Single-column layout within */
-    gap: 1rem;
-  }
 
   </style>
 </head>
@@ -143,7 +134,7 @@
     <h1>Sega Genesis Palette Quantization</h1>
   </header>
 <div class="content-wrapper">
-  <div class="container">
+  <div class="container1">
     <img id="source_img" src="carina-nebula.png" alt="source image">
     <table>
       <tr>
@@ -261,8 +252,9 @@
       <progress id="progress" max="100" value="0"></progress>
     </div>
   </div>
-  <div id="quantized_images">
-    <!-- Quantized images will go here -->
+
+  <div class="container2">
+    <div id="quantized_images"><!-- Quantized images will go here --></div>
   </div>
 </div>
   <script type="module" src="script.js"></script>
