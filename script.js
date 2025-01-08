@@ -3,12 +3,10 @@ const body = document.getElementById("body");
 const imageSelector = document.getElementById("image_selector");
 const numPalettesInput = document.getElementById("palette_num");
 const colorsPerPaletteInput = document.getElementById("colors_per_palette");
-const bitsPerChannelInput = document.getElementById("bits_per_channel");
 const fractionOfPixelsInput = document.getElementById("fraction_of_pixels");
 const integerInputs = [
     [numPalettesInput, 8],
     [colorsPerPaletteInput, 4],
-    [bitsPerChannelInput, 5],
 ];
 function validateIntegerInput(numberInput) {
     const [inputElement, defaultValue] = numberInput;
@@ -232,7 +230,7 @@ quantizeButton.addEventListener("click", () => {
             tileHeight: 8,
             numPalettes: parseInt(numPalettesInput.value, radix),
             colorsPerPalette: parseInt(colorsPerPaletteInput.value, radix),
-            bitsPerChannel: parseInt(bitsPerChannelInput.value, radix),
+            bitsPerChannel: 3,
             fractionOfPixels: parseFloat(fractionOfPixelsInput.value),
             colorZeroBehaviour: colorZeroBehaviour,
             colorZeroValue: colorZeroValue,
