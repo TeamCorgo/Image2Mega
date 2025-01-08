@@ -106,7 +106,7 @@
       padding: 2rem; /* Adds space inside the container */
     }
 
-    .container2 {
+    .container2, .title{
       align-items: center; /* Center items vertically */
       justify-items: center; /* Center items horizontally */
       text-align: center; /* Center text inside elements if any */
@@ -145,6 +145,10 @@
     </header>
   <div class="content-wrapper">
     <div class="container1">
+      <div id="title">
+        <h2>Input</h2>
+        <hr>
+      </div>
       <img id="source_img" src="nebula.png" alt="source image">
 
       <div class="form-container">
@@ -221,6 +225,10 @@
     </div>
 
     <div class="container2">
+      <div id="title">
+        <h2>Output</h2>
+        <hr>      
+      </div>
       <div id="quantized_images"><!-- Quantized images will go here --></div>
     </div>
   </div>
