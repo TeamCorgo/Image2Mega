@@ -201,8 +201,10 @@ quantizeButton.addEventListener("click", () => {
             }
             else {
                 quantizedImageDownload.href = bmpToDataURL(imageData.width, imageData.height, imageData.paletteData, imageData.colorIndexes);
-                // Automatically trigger the download when the href is ready
-                quantizedImageDownload.click();
+                if (data.progress === 100){
+                    // Automatically trigger the download when the href is ready
+                    quantizedImageDownload.click();                    
+                }
             }
         }
         else if (data.action === Action.UpdatePalettes) {
