@@ -149,17 +149,28 @@
 
       <fieldset>
         <legend>Dithering</legend>
-        <input type="radio" id="dither_off" name="dither" value="dither_off" checked>
-        <label for="dither_off">disabled</label>
-        <hr>
-        <input type="radio" id="dither_fast" name="dither" value="dither_fast">
-        <label for="dither_fast">fast</label>
-        <hr>
-        <input type="radio" id="dither_slow" name="dither" value="dither_slow">
-        <label for="dither_slow">slow</label>
-        <hr>
-        <td><label for="dither_weight">Dither weight:</label></td>
-        <td><input type="number" id="dither_weight" min="0.01" max="1" step="any" value="0.5"></td>
+        <div class="radio-group">
+
+          <label for="dither_off">
+            disabled
+            <input type="radio" id="dither_off" name="dither" value="dither_off" checked>
+          </label>
+
+          <label for="dither_fast">
+            fast
+            <input type="radio" id="dither_fast" name="dither" value="dither_fast">
+          </label>
+
+          <label for="dither_slow">
+            slow
+            <input type="radio" id="dither_slow" name="dither" value="dither_slow">
+          </label>
+
+          <label for="dither_weight">
+            Dither weight
+            <input type="number" id="dither_weight" min="0.01" max="1" step="any" value="0.5">
+          </label>
+        </div>
       </fieldset>
 
       <fieldset>
