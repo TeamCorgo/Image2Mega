@@ -31,7 +31,6 @@
       max-width: 100%;
       display: block;
       margin: 0 auto 1.5rem auto;
-      border-radius: 10px;
     }
 
     table {
@@ -118,8 +117,10 @@
       padding: 2rem; /* Adds space inside the container */
     }
 
-    container1 {
-     flex: 2; /* Takes more space than quantized_images */
+    .container2 {
+      align-items: center; /* Center items vertically */
+      justify-items: center; /* Center items horizontally */
+      text-align: center; /* Center text inside elements if any */
     }
 
     #quantized_images {
@@ -137,6 +138,7 @@
   </header>
 <div class="content-wrapper">
   <div class="container1">
+    <h2>Input</h2>
     <img id="source_img" src="carina-nebula.png" alt="source image">
     <table>
       <tr>
@@ -256,6 +258,7 @@
   </div>
 
   <div class="container2">
+    <h2>Output</h2>
     <div id="quantized_images"><!-- Quantized images will go here --></div>
   </div>
 </div>
