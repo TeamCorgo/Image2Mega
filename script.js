@@ -231,8 +231,8 @@ quantizeButton.addEventListener("click", () => {
         action: Action.StartQuantization,
         imageData: imageDataFrom(sourceImage),
         quantizationOptions: {
-            tileWidth: parseInt(tileWidthInput.value, radix),
-            tileHeight: parseInt(tileHeightInput.value, radix),
+            tileWidth: 8,
+            tileHeight: 8,
             numPalettes: parseInt(numPalettesInput.value, radix),
             colorsPerPalette: parseInt(colorsPerPaletteInput.value, radix),
             bitsPerChannel: parseInt(bitsPerChannelInput.value, radix),
