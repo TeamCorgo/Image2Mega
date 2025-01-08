@@ -93,7 +93,7 @@ function updateProgress(progress) {
 function updateQuantizedImage(image) {
     postMessage({ action: Action.UpdateQuantizedImage, imageData: image });
 }
-function updatePalettes(palettes, doSorting) {
+function updatePalettes(palettes) {
     let pal = structuredClone(palettes);
     const colorZeroBehaviour = quantizationOptions.colorZeroBehaviour;
     let startIndex = 0;
@@ -106,9 +106,6 @@ function updatePalettes(palettes, doSorting) {
     }
     if (colorZeroBehaviour === ColorZeroBehaviour.Shared) {
         startIndex = 1;
-    }
-    if (doSorting) {
-        pal = sortPalettes(pal, startIndex);
     }
     postMessage({
         action: Action.UpdatePalettes,
@@ -198,13 +195,13 @@ function quantizeImage(image) {
         endIndex -= 1;
     }
     updateProgress(prog[0] / quantizationOptions.numPalettes);
-    updatePalettes(palettes, false);
+    updatePalettes(palettes);
     if (showProgress)
         updateQuantizedImage(quantizeTiles(palettes, reducedImageData, false));
     for (let numColors = startIndex; numColors <= endIndex; numColors++) {
         expandPalettesByOneColor(palettes, tiles, pixels, randomShuffle);
         updateProgress((prog[0] * numColors) / quantizationOptions.colorsPerPalette);
-        updatePalettes(palettes, false);
+        updatePalettes(palettes);
         if (showProgress)
             updateQuantizedImage(quantizeTiles(palettes, reducedImageData, false));
     }
@@ -222,7 +219,7 @@ function quantizeImage(image) {
             minPalettes = structuredClone(palettes);
         }
         updateProgress(prog[0] + ((prog[1] - prog[0]) * (i + 1)) / replaceIterations);
-        updatePalettes(palettes, false);
+        updatePalettes(palettes);
         if (showProgress) {
             if (useMin && i === replaceIterations - 1) {
                 updateQuantizedImage(quantizeTiles(minPalettes, reducedImageData, false));
@@ -247,23 +244,23 @@ function quantizeImage(image) {
         if (iteration >= nextUpdate) {
             nextUpdate += iterations;
             updateProgress(prog[1] + ((prog[2] - prog[1]) * iteration) / finalIterations);
-            updatePalettes(palettes, false);
+            updatePalettes(palettes);
         }
     }
     console.log("Normal final: " + meanSquareError(palettes, tiles).toFixed(0));
     console.log("Dither final: " + meanSquareErrorDither(palettes, tiles).toFixed(0));
     updateProgress(prog[2]);
-    updatePalettes(palettes, false);
+    updatePalettes(palettes);
     if (!useDither) {
         palettes = reducePalettes(palettes, quantizationOptions.bitsPerChannel);
         for (let i = 0; i < 3; i++) {
             palettes = kMeans(palettes, tiles);
             updateProgress(prog[2] + ((prog[3] - prog[2]) * (i + 1)) / 3);
-            updatePalettes(palettes, false);
+            updatePalettes(palettes);
         }
     }
     palettes = reducePalettes(palettes, quantizationOptions.bitsPerChannel);
-    updatePalettes(palettes, true);
+    updatePalettes(palettes);
     updateQuantizedImage(quantizeTiles(palettes, reducedImageData, useDither));
     console.log("> MSE: " + meanSquareError(palettes, tiles).toFixed(2));
     console.log(`> Time: ${((performance.now() - t0) / 1000).toFixed(2)} sec`);
@@ -280,186 +277,6 @@ function reducePalettes(palettes, bitsPerChannel) {
         result.push(pal);
     }
     return result;
-}
-function sortPalettes(palettes, startIndex) {
-    const pairIterations = 2000;
-    const tIterations = 10000;
-    const paletteIterations = 100000;
-    const upWeight = 2;
-    const numPalettes = palettes.length;
-    const numColors = palettes[0].length;
-    if (numColors === 2 && startIndex === 1) {
-        return palettes;
-    }
-    // paletteDist[i+1][j+1] stores distance between palette i and palette j
-    const paletteDist = zeros2(numPalettes + 2, numPalettes + 2);
-    // colorIndex[p1][p2][i] stores the index of the closest color in p2 from color index i in p1
-    const colorIndex = zeros3(numPalettes, numPalettes, numColors);
-    for (let i = 0; i < numPalettes; i++) {
-        for (let j = 0; j < numPalettes; j++) {
-            for (let k = 0; k < numColors; k++) {
-                colorIndex[i][j][k] = k;
-            }
-        }
-    }
-    for (let p1 = 0; p1 < numPalettes - 1; p1++) {
-        for (let p2 = p1 + 1; p2 < numPalettes; p2++) {
-            const index = colorIndex[p1][p2];
-            for (let iteration = 0; iteration < pairIterations; iteration++) {
-                let i1 = startIndex +
-                    Math.floor(Math.random() * (numColors - startIndex - 1));
-                let i2 = i1 + 1 + Math.floor(Math.random() * (numColors - i1 - 1));
-                if (Math.random() < 0.5) {
-                    [i1, i2] = [i2, i1];
-                }
-                const p1i1 = palettes[p1][i1];
-                const p1i2 = palettes[p1][i2];
-                const p2i1 = palettes[p2][index[i1]];
-                const p2i2 = palettes[p2][index[i2]];
-                const straightDist = colorDistance(p1i1, p2i1) + colorDistance(p1i2, p2i2);
-                const swappedDist = colorDistance(p1i1, p2i2) + colorDistance(p1i2, p2i1);
-                if (swappedDist < straightDist) {
-                    [index[i1], index[i2]] = [index[i2], index[i1]];
-                }
-            }
-            let sum = 0;
-            for (let i = 0; i < numColors; i++) {
-                const p1i = palettes[p1][i];
-                const p2i = palettes[p2][index[i]];
-                sum += colorDistance(p1i, p2i);
-            }
-            paletteDist[p1 + 1][p2 + 1] = sum;
-            paletteDist[p2 + 1][p1 + 1] = sum;
-        }
-    }
-    for (let p1 = 1; p1 < numPalettes; p1++) {
-        for (let p2 = 0; p2 < p1; p2++) {
-            const index = colorIndex[p2][p1];
-            const revIndex = colorIndex[p1][p2];
-            for (let i = 0; i < numColors; i++) {
-                revIndex[i] = index.indexOf(i);
-            }
-        }
-    }
-    const palIndex = [];
-    for (let i = 0; i < numPalettes + 2; i++) {
-        palIndex.push(i);
-    }
-    if (numPalettes > 2) {
-        for (let iteration = 0; iteration < paletteIterations; iteration++) {
-            const index1 = Math.max(1, Math.floor(Math.random() * numPalettes));
-            const index2 = Math.min(numPalettes, index1 + 1 + Math.floor(Math.random() * numPalettes));
-            const i1b = palIndex[index1 - 1];
-            const i1 = palIndex[index1];
-            const i2 = palIndex[index2];
-            const i2b = palIndex[index2 + 1];
-            const straightDist = paletteDist[i1b][i1] + paletteDist[i2][i2b];
-            const swappedDist = paletteDist[i1b][i2] + paletteDist[i1][i2b];
-            if (swappedDist < straightDist) {
-                reverse(palIndex, index1, index2);
-            }
-        }
-    }
-    const pal1 = palettes[palIndex[1] - 1];
-    const p1Index = [];
-    for (let i = 0; i < numColors + 2; i++) {
-        p1Index.push(i);
-    }
-    const p1Dist = zeros2(numColors + 2, numColors + 2);
-    for (let i = 1; i <= numColors; i++) {
-        for (let j = 1; j <= numColors; j++) {
-            p1Dist[i][j] = colorDistance(pal1[i - 1], pal1[j - 1]);
-        }
-    }
-    if (numColors > 2) {
-        for (let iteration = 0; iteration < paletteIterations; iteration++) {
-            const index1 = Math.max(1 + startIndex, Math.floor(Math.random() * numColors));
-            const index2 = Math.min(numColors, index1 + 1 + Math.floor(Math.random() * numColors));
-            const i1b = p1Index[index1 - 1];
-            const i1 = p1Index[index1];
-            const i2 = p1Index[index2];
-            const i2b = p1Index[index2 + 1];
-            const straightDist = p1Dist[i1b][i1] + p1Dist[i2][i2b];
-            const swappedDist = p1Dist[i1b][i2] + p1Dist[i1][i2b];
-            if (swappedDist < straightDist) {
-                reverse(p1Index, index1, index2);
-            }
-        }
-    }
-    const pIndex = zeros2(numPalettes, numColors);
-    for (let i = 0; i < numColors; i++) {
-        pIndex[0][i] = p1Index[i + 1] - 1;
-    }
-    for (let i = 1; i < numPalettes; i++) {
-        for (let j = 0; j < numColors; j++) {
-            const p1 = palIndex[i] - 1;
-            const p2 = palIndex[i + 1] - 1;
-            pIndex[i][j] = colorIndex[p1][p2][pIndex[i - 1][j]];
-        }
-    }
-    if (numColors >= 4)
-        for (let i = 1; i < numPalettes; i++) {
-            const p1 = palIndex[i] - 1;
-            const p2 = palIndex[i + 1] - 1;
-            let iteration = 0;
-            while (iteration < tIterations) {
-                const index1 = Math.max(startIndex, Math.floor(Math.random() * numColors));
-                const index2 = Math.max(startIndex, Math.floor(Math.random() * numColors));
-                if (index1 === index2)
-                    continue;
-                const up1 = pIndex[i - 1][index1];
-                const i1 = pIndex[i][index1];
-                const left1 = pIndex[i][index1 - 1];
-                const right1 = pIndex[i][index1 + 1];
-                const up2 = pIndex[i - 1][index2];
-                const i2 = pIndex[i][index2];
-                const left2 = pIndex[i][index2 - 1];
-                const right2 = pIndex[i][index2 + 1];
-                let straightDist = upWeight *
-                    colorDistance(palettes[p2][i1], palettes[p1][up1]);
-                if (left1 >= 0)
-                    straightDist += colorDistance(palettes[p2][i1], palettes[p2][left1]);
-                if (right1 < numColors)
-                    straightDist += colorDistance(palettes[p2][i1], palettes[p2][right1]);
-                straightDist +=
-                    upWeight *
-                        colorDistance(palettes[p2][i2], palettes[p1][up2]);
-                if (left2 >= 0)
-                    straightDist += colorDistance(palettes[p2][i2], palettes[p2][left2]);
-                if (right2 < numColors)
-                    straightDist += colorDistance(palettes[p2][i2], palettes[p2][right2]);
-                let swappedDist = upWeight *
-                    colorDistance(palettes[p2][i2], palettes[p1][up1]);
-                if (left1 >= 0)
-                    swappedDist += colorDistance(palettes[p2][i2], palettes[p2][left1]);
-                if (right1 < numColors)
-                    swappedDist += colorDistance(palettes[p2][i2], palettes[p2][right1]);
-                swappedDist +=
-                    upWeight *
-                        colorDistance(palettes[p2][i1], palettes[p1][up2]);
-                if (left2 >= 0)
-                    swappedDist += colorDistance(palettes[p2][i1], palettes[p2][left2]);
-                if (right2 < numColors)
-                    swappedDist += colorDistance(palettes[p2][i1], palettes[p2][right2]);
-                if (swappedDist < straightDist) {
-                    [pIndex[i][index1], pIndex[i][index2]] = [
-                        pIndex[i][index2],
-                        pIndex[i][index1],
-                    ];
-                }
-                iteration++;
-            }
-        }
-    const pals = [];
-    for (let i = 0; i < numPalettes; i++) {
-        const p2 = palIndex[i + 1] - 1;
-        const pal = [];
-        for (let j = 0; j < numColors; j++) {
-            pal.push(palettes[p2][pIndex[i][j]]);
-        }
-        pals.push(pal);
-    }
-    return pals;
 }
 function zeroArray(len) {
     const result = [];
