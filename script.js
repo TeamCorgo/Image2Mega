@@ -8,8 +8,6 @@ const colorsPerPaletteInput = document.getElementById("colors_per_palette");
 const bitsPerChannelInput = document.getElementById("bits_per_channel");
 const fractionOfPixelsInput = document.getElementById("fraction_of_pixels");
 const integerInputs = [
-    [tileWidthInput, 8],
-    [tileHeightInput, 8],
     [numPalettesInput, 8],
     [colorsPerPaletteInput, 4],
     [bitsPerChannelInput, 5],
