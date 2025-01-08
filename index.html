@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sega Genesis Palette Quantization</title>
+    <title>Genesis Image into Palette</title>
   </head>
   <style>
     body {
@@ -20,9 +20,6 @@
       padding: 2rem 1rem;
       background-color: #34495e;
       color: #ecf0f1;
-    }
-
-    header h1 {
       margin: 0;
       font-size: 2rem;
       font-weight: 700;
@@ -32,15 +29,6 @@
       max-width: 100%;
       display: block;
       margin: 0 auto 1.5rem auto;
-    }
-
-    table {
-      width: 100%;
-      border-spacing: 0 1rem;
-    }
-
-    table td {
-      padding: 0.5rem;
     }
 
     label {
@@ -91,7 +79,7 @@
 
     progress {
       width: 100%;
-      height: 1rem;
+      height: 3rem;
       border-radius: 5px;
       overflow: hidden;
       margin-top: 1rem;
@@ -118,7 +106,7 @@
       padding: 2rem; /* Adds space inside the container */
     }
 
-    .container2, .title{
+    .container2 {
       align-items: center; /* Center items vertically */
       justify-items: center; /* Center items horizontally */
       text-align: center; /* Center text inside elements if any */
@@ -157,10 +145,6 @@
     </header>
   <div class="content-wrapper">
     <div class="container1">
-      <div id="title">
-        <h2>Input</h2>
-        <hr>
-      </div>
       <img id="source_img" src="nebula.png" alt="source image">
 
       <div class="form-container">
@@ -193,6 +177,7 @@
         <label for="transparent_from_color">transparent color:</label>
         <input type="color" id="transparent_color" value="#ff00ff" aria-label="transparent color">
       </fieldset>
+
       <fieldset>
         <legend>Dithering</legend>
         <input type="radio" id="dither_off" name="dither" value="dither_off" checked>
@@ -207,6 +192,7 @@
         <td><label for="dither_weight">Dither weight:</label></td>
         <td><input type="number" id="dither_weight" min="0.01" max="1" step="any" value="0.5"></td>
       </fieldset>
+
       <fieldset>
         <legend>Dither pattern</legend>
         <input type="radio" id="dither_diagonal4" name="dither_pattern" value="dither_diagonal4" checked>
@@ -227,6 +213,7 @@
         <input type="radio" id="dither_vertical2" name="dither_pattern" value="dither_vertical2">
         <label for="dither_vertical2">vertical2</label>
       </fieldset>
+
       <div>
         <button type="button" id="quantizeButton">Quantize</button>
         <progress id="progress" max="100" value="0"></progress>
@@ -234,10 +221,6 @@
     </div>
 
     <div class="container2">
-      <div id="title">
-        <h2>Output</h2>
-        <hr>      
-      </div>
       <div id="quantized_images"><!-- Quantized images will go here --></div>
     </div>
   </div>
