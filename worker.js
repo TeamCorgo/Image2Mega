@@ -1052,7 +1052,7 @@ function colorQuantize1Color(tiles, pixels, randomShuffle) {
         palettes[0].push(avgColor);
         palettes[0][0] = structuredClone(quantizationOptions.colorZeroValue);
     }
-    palettes[0] = [0, 255, 0];
+    palettes[0].push([0, 255, 0]);
 
     let splitIndex = 0;
     for (let numPalettes = 2; numPalettes <= quantizationOptions.numPalettes; numPalettes++) {
