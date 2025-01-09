@@ -45,8 +45,8 @@
     }
 
     input[type="color"] {
-      width: 5em;
-      height: 5em;
+      width: 3em;
+      height: 3em;
     }
 
     .content-wrapper {
@@ -111,7 +111,7 @@
 
 
   <body id="body">
-    <header>Image → Mega Image</h1></header>
+    <header>Image → Mega Image</header>
   <div class="content-wrapper">
     <div class="container1">
       <img id="source_img" src="nebula.png" alt="source image">
@@ -129,24 +129,7 @@
         <label for="fraction_of_pixels">Fraction of pixels:</label>
         <input type="number" id="fraction_of_pixels" min="0.01" max="10" step="any" value="0.1">
       </div>
-
-      <fieldset>
-        <legend>Color index zero behaviour</legend>
-        <input type="radio" id="unique" name="color_zero" value="unique">
-        <label for="unique">unique</label>
-        <hr>
-        <input type="radio" id="shared" name="color_zero" value="shared" checked>
-        <label for="shared">shared color:</label>
-        <input type="color" id="shared_color" value="#000000" aria-label="shared color">
-        <hr>
-        <input type="radio" id="transparent_from_transparent" name="color_zero" value="transparent_from_transparent">
-        <label for="transparent_from_transparent">transparent, from transparent pixels</label>
-        <hr>
-        <input type="radio" id="transparent_from_color" name="color_zero" value="transparent_from_color">
-        <label for="transparent_from_color">transparent color:</label>
-        <input type="color" id="transparent_color" value="#ff00ff" aria-label="transparent color">
-      </fieldset>
-
+      <br><br>
       <fieldset>
         <legend>Color index zero behaviour</legend>
         <div class="radio-group">
@@ -156,9 +139,7 @@
           <label for="transparent_from_color">Transparent <input type="radio" id="transparent_from_color" name="color_zero" value="transparent_from_color"><input type="color" id="transparent_color" value="#ff00ff" aria-label="transparent color"></label>
         </div>
       </fieldset>
-
-
-
+      <br><br>
       <fieldset>
         <legend>Dithering</legend>
         <div class="radio-group">
@@ -176,7 +157,7 @@
           </label>
         </div>
       </fieldset>
-
+      <br><br>
       <fieldset>
         <legend>Dither pattern</legend>
         <div class="radio-group">
